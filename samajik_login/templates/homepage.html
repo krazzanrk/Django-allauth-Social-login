@@ -1,0 +1,37 @@
+{% load socialaccount %}
+{% providers_media_js %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOMEPAGE</title>
+</head>
+<body>
+
+
+{% if request.user.is_authenticated %}
+    <ul>
+        <li>{{ request.user }}</li>
+        <li><a href="{% url 'account_logout' %}">logout</a></li>
+    </ul>
+{% else %}
+    <ul>
+        <li>not loged in</li>
+    </ul>
+{% endif %}
+
+<a href="{% url 'account_signup' %}">Register</a>
+<a href="{% url 'account_login' %}">Login</a>
+
+<li>
+    <a
+            href="{% provider_login_url "google" method="oauth2" %}">Google</a>
+</li>
+<li>
+    <a
+            href="{% provider_login_url "facebook" method="oauth2" %}">facebook</a>
+</li>
+
+
+</body>
+</html>
